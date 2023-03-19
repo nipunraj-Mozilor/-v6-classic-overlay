@@ -1,10 +1,6 @@
 const selectEle = document.getElementsByTagName('h2')
 selectEle[0].style.color = 'red'
 
-window.addEventListener('load', () => {
-  document.body.classList.remove('cky-overlay')
-})
-
 if (
   !document.querySelector(
     '.cky-consent-container .cky-classic-bottom .cky-hide'
