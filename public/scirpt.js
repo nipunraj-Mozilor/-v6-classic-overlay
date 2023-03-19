@@ -12,15 +12,15 @@ selectEle[0].style.color = 'red'
 //cky-classic-bottom
 const ckyConsentContainer = document.querySelector('.cky-consent-container')
 const ckyConsentBottom = document.querySelector('.cky-classic-bottom')
-if (
-  ckyConsentBottom &&
-  ckyConsentContainer &&
-  ckyConsentContainer.classList.contains('cky-hide')
-) {
+if (ckyConsentContainer && ckyConsentContainer.classList.contains('cky-hide')) {
   const computedStyle = window.getComputedStyle(ckyConsentContainer)
   if (computedStyle.display === 'block') {
     document.body.classList.add('cky-overlay')
   }
+}
+
+if (ckyConsentBottom) {
+  document.body.classList.add('cky-overlay')
 }
 
 jQuery(document).on(
