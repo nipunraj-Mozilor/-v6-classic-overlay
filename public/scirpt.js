@@ -1,7 +1,7 @@
 // const selectEle = document.getElementsByTagName('h2')
 // selectEle[0].style.color = 'red'
 
-const buttons = ['cky-btn-accept', 'cky-btn-reject', 'cky-btn-close']
+const buttons = ['cky-btn-accept', 'cky-btn-reject']
 
 let breakPopupWait = false
 window.addEventListener('load', function () {
@@ -22,8 +22,9 @@ function waitForElement(selector, isPopup, callback) {
 
 function handleConsentBannerShown(element) {
   const overlayElement = document.createElement('div')
-  overlayElement.setAttribute('class', 'cky-overlay')
-  element.parentNode.insertBefore(overlayElement, element.nextSibling)
+  document.body.classList.add('cky-overlay')
+  // overlayElement.setAttribute('class', 'cky-overlay')
+  // element.parentNode.insertBefore(overlayElement, element.nextSibling)
   for (let i = 0; i < buttons.length; i++) {
     const buttonElement = document.getElementById(buttons[i])
     buttonElement &&
@@ -45,7 +46,8 @@ function handleConsentBannerShown(element) {
 
 function removeOverlay(element) {
   return function () {
-    element.parentNode.removeChild(element)
+    document.body.classList.remove('cky-overlay')
+    // element.parentNode.removeChild(element)
     breakPopupWait = true
     waitForElement('cky-consent', false, handleConsentBannerShown)
   }
