@@ -21,7 +21,7 @@ function waitForElement(selector, isShowup, callback) {
 function handleConsentBannerShown(element) {
   const overlayElement = document.createElement('div');
   overlayElement.setAttribute('class', 'cky-overlay');
-  element.parentNode.insertBefore(overlayElement, element.nextSibling);
+  element[0].parentNode.insertBefore(overlayElement, element.nextSibling);
   for (let i = 0; i < buttons.length; i++) {
     const buttonElement = document.getElementById(buttons[i]);
     buttonElement &&
