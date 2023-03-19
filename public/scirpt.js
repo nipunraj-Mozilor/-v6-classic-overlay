@@ -24,7 +24,7 @@ function handleConsentBannerShown(element) {
   element[0].parentNode.insertBefore(overlayElement, element.nextSibling);
   for (let i = 0; i < buttons.length; i++) {
     console.log('buttons', buttons[i]);
-    const buttonElement = document.getElementById(buttons[i]);
+    const buttonElement = document.getElementsByClassName(buttons[i]);
     console.log(buttonElement);
     buttonElement &&
       buttonElement.addEventListener('click', removeOverlay(overlayElement));
