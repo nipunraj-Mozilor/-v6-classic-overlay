@@ -2,18 +2,19 @@ const buttons = ['cky-btn-accept', 'cky-btn-reject'];
 
 let breakShowupWait = false;
 window.addEventListener('load', function () {
-  console.log('in load');
-  waitForElement('cky-consent-container', true, handleConsentBannerShown);
+  waitForElement('cky-consent-container', false, handleConsentBannerShown);
 });
 function waitForElement(selector, isShowup, callback) {
   if (isShowup && breakShowupWait) {
     breakShowupWait = false;
     return callback();
   }
-  const element = document.getElementsByClassName(selector);
-  // console.log('element here', element);
-  if (element[0] && element[0].style.display !== 'none')
+  const element = document.querySelector(`.${selector}`);
+  console.log('element here', element);
+  if (element && element.style.display !== 'none') {
+    console.log('inside if condition');
     return callback(element);
+  }
   setTimeout(() => {
     waitForElement(selector, isShowup, callback);
   }, 200);
