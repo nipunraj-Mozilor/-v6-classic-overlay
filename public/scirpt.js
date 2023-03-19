@@ -9,16 +9,19 @@ selectEle[0].style.color = 'red'
 //   document.body.classList.add('cky-overlay')
 // }
 
-//
+//cky-classic-bottom
 const ckyConsentContainer = document.querySelector('.cky-consent-container')
-if (ckyConsentContainer && ckyConsentContainer.classList.contains('cky-hide')) {
+const ckyConsentBottom = document.querySelector('.cky-classic-bottom')
+if (
+  ckyConsentBottom &&
+  ckyConsentContainer &&
+  ckyConsentContainer.classList.contains('cky-hide')
+) {
   const computedStyle = window.getComputedStyle(ckyConsentContainer)
   if (computedStyle.display === 'block') {
     document.body.classList.add('cky-overlay')
   }
 }
-
-//
 
 jQuery(document).on(
   'click',
