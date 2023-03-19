@@ -3,7 +3,7 @@ selectEle[0].style.color = 'red'
 
 const buttons = ['cky-btn-accept', 'cky-btn-reject', 'cky-btn-close']
 
-let breakPopupWait = false
+let breakPopupWait = true
 window.addEventListener('load', function () {
   waitForElement('cky-consent-container', false, handleConsentBannerShown)
 })
