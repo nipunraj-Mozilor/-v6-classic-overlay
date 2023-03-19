@@ -3,7 +3,7 @@ const buttons = ['cky-btn-accept', 'cky-btn-reject'];
 let breakShowupWait = false;
 window.addEventListener('load', function () {
   console.log('in load');
-  waitForElement('cky-consent-container', false, handleConsentBannerShown);
+  waitForElement('cky-consent-container', true, handleConsentBannerShown);
 });
 function waitForElement(selector, isShowup, callback) {
   if (isShowup && breakShowupWait) {
