@@ -21,13 +21,14 @@ function waitForElement(selector, isShowup, callback) {
 }
 
 function handleConsentBannerShown(element) {
+  console.log('inside callback element', element);
   const overlayElement = document.createElement('div');
   overlayElement.setAttribute('class', 'cky-overlay');
   element.parentNode.insertBefore(overlayElement, element.nextSibling);
   for (let i = 0; i < buttons.length; i++) {
-    console.log('buttons in loop', buttons[i]);
+    // console.log('buttons in loop', buttons[i]);
     const buttonElement = document.querySelector(`.${buttons[i]}`);
-    console.log('cliked button', buttonElement);
+    // console.log('cliked button', buttonElement);
     buttonElement &&
       buttonElement.addEventListener('click', removeOverlay(overlayElement));
   }
