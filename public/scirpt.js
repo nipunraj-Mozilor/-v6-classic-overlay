@@ -10,6 +10,7 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.getElementsByClassName(selector);
+  console.log('element here', element);
   if (element && element.style.display !== 'none') return callback(element);
   setTimeout(() => {
     waitForElement(selector, isShowup, callback);
