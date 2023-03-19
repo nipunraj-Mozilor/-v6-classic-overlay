@@ -27,7 +27,7 @@ function handleConsentBannerShown(element) {
     const buttonElement = document.getElementsByClassName(buttons[i]);
     console.log(buttonElement);
     buttonElement &&
-      buttonElement.addEventListener('click', removeOverlay(overlayElement));
+      buttonElement[0].addEventListener('click', removeOverlay(overlayElement));
   }
 }
 
