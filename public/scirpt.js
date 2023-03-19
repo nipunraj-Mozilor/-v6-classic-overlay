@@ -10,7 +10,7 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.getElementsByClassName(selector);
-  console.log('element here', element);
+  // console.log('element here', element);
   if (element[0] && element[0].style.display !== 'none')
     return callback(element);
   setTimeout(() => {
@@ -23,6 +23,7 @@ function handleConsentBannerShown(element) {
   overlayElement.setAttribute('class', 'cky-overlay');
   element[0].parentNode.insertBefore(overlayElement, element.nextSibling);
   for (let i = 0; i < buttons.length; i++) {
+    console.log('buttons', buttons[i]);
     const buttonElement = document.getElementById(buttons[i]);
     buttonElement &&
       buttonElement.addEventListener('click', removeOverlay(overlayElement));
