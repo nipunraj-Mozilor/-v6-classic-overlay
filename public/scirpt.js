@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //   document.body.classList.add('cky-overlay');
 // });
 document.addEventListener('DOMContentLoaded', () => {
-  const element2 = document.querySelector('.cky-btn-revisit');
+  const element2 = document.querySelector('.cky-btn-revisit-wrapper');
   console.log('element 2', element2);
   element2.addEventListener('click', () => {
     document.body.classList.add('cky-overlay');
