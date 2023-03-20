@@ -10,7 +10,8 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.querySelector(`.${selector}`);
-  if (element && element.style.display !== 'none') {
+  const element2 = document.querySelector('.cky-hide');
+  if (element && element2.style.display !== 'none') {
     console.log('is none');
     return callback(element);
   }
