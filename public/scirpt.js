@@ -1,50 +1,41 @@
-const buttons = ['.cky-btn-accept', '.cky-btn-reject', '.cky-btn-preferences'];
-
-window.addEventListener('load', function () {
-  waitForElement('.cky-consent-container', handleConsentBannerShown);
-});
-
-function waitForElement(selector, callback) {
-  const element = document.querySelector(selector);
-  if (element) {
-    const display = getDisplayStyle(element);
-    if (display !== 'none' && display !== '') {
-      return callback(element);
+!(function () {
+  var e = ['.cky-btn-accept', '.cky-btn-reject', '.cky-btn-preferences'];
+  function t(e, n) {
+    var r = document.querySelector(e);
+    if (r) {
+      var o = (function (e) {
+        return e.currentStyle
+          ? e.currentStyle.display
+          : window.getComputedStyle
+          ? window.getComputedStyle(e, null).getPropertyValue('display')
+          : '';
+      })(r);
+      if ('none' !== o && '' !== o) return n(r);
+    }
+    setTimeout(function () {
+      t(e, n);
+    }, 200);
+  }
+  function n(t) {
+    var n = document.createElement('div');
+    n.setAttribute(
+      'style',
+      'position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.5);z-index:9999;'
+    ),
+      t.parentNode.insertBefore(n, t.nextSibling);
+    for (var o = 0; o < e.length; o++) {
+      var c = document.querySelector(e[o]);
+      c && c.addEventListener('click', r(n));
     }
   }
-
-  setTimeout(() => {
-    waitForElement(selector, callback);
-  }, 200);
-}
-
-function handleConsentBannerShown(element) {
-  const overlayElement = document.createElement('div');
-  overlayElement.setAttribute(
-    'style',
-    'position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.5);z-index:9999;'
-  );
-
-  element.parentNode.insertBefore(overlayElement, element.nextSibling);
-  for (let i = 0; i < buttons.length; i++) {
-    const buttonElement = document.querySelector(buttons[i]);
-    buttonElement &&
-      buttonElement.addEventListener('click', removeOverlay(overlayElement));
+  function r(e) {
+    return function () {
+      e &&
+        e.parentNode &&
+        (e.parentNode.removeChild(e), t('.cky-consent-container', n));
+    };
   }
-}
-
-function removeOverlay(element) {
-  return function () {
-    if (!element || !element.parentNode) return;
-    element.parentNode.removeChild(element);
-    waitForElement('.cky-consent-container', handleConsentBannerShown);
-  };
-}
-
-function getDisplayStyle(element) {
-  return element.currentStyle
-    ? element.currentStyle['display']
-    : window.getComputedStyle
-    ? window.getComputedStyle(element, null).getPropertyValue('display')
-    : '';
-}
+  window.addEventListener('load', function () {
+    t('.cky-consent-container', n);
+  });
+})();
