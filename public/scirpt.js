@@ -1,26 +1,25 @@
-const buttons = ['cky-btn-accept', 'cky-btn-reject', 'cky-btn-preferences'];
+const buttons = ['.cky-btn-accept', '.cky-btn-reject', '.cky-btn-preferences'];
 
 window.addEventListener('load', function () {
-  waitForElement('cky-consent-container', false, handleConsentBannerShown);
+  waitForElement('.cky-consent-container', handleConsentBannerShown);
 });
-function waitForElement(selector, isShowup, callback) {
-  const element = document.querySelector(`.${selector} .cky-consent-container`);
+
+function waitForElement(selector, callback) {
+  const element = document.querySelector(selector);
   if (element) {
-    const display = getStyle(element, 'display');
+    const display = getDisplayStyle(element);
     if (display !== 'none' && display !== '') {
       return callback(element);
     }
   }
 
   setTimeout(() => {
-    waitForElement(selector, isShowup, callback);
+    waitForElement(selector, callback);
   }, 200);
 }
 
 function handleConsentBannerShown(element) {
-  console.log('inside callback element', element.style);
   const overlayElement = document.createElement('div');
-  overlayElement.setAttribute('style', 'cky-overlay');
   overlayElement.setAttribute(
     'style',
     'position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.5);z-index:9999;'
@@ -28,28 +27,23 @@ function handleConsentBannerShown(element) {
 
   element.parentNode.insertBefore(overlayElement, element.nextSibling);
   for (let i = 0; i < buttons.length; i++) {
-    const buttonElement = document.querySelector(`.${buttons[i]}`);
-    console.log(buttonElement);
+    const buttonElement = document.querySelector(buttons[i]);
     buttonElement &&
       buttonElement.addEventListener('click', removeOverlay(overlayElement));
   }
 }
 
 function removeOverlay(element) {
-  return () => {
-    console.log(element);
+  return function () {
     element.parentNode.removeChild(element);
-    console.log('last here');
-    breakPopupWait = true;
-    waitForElement('cky-consent', false, handleConsentBannerShown);
+    waitForElement('.cky-consent-container', handleConsentBannerShown);
   };
 }
 
-function getStyle(element, name) {
-  // const element = document.querySelector(id);
-  return element && element.currentStyle
-    ? element.currentStyle[name]
+function getDisplayStyle(element) {
+  return element.currentStyle
+    ? element.currentStyle['display']
     : window.getComputedStyle
-    ? window.getComputedStyle(element, null).getPropertyValue(name)
-    : null;
+    ? window.getComputedStyle(element, null).getPropertyValue('display')
+    : '';
 }
