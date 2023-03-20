@@ -39,6 +39,7 @@ function removeOverlay(element) {
   return () => {
     console.log(element);
     element.parentNode.removeChild(element);
+    console.log('last here');
     breakPopupWait = true;
     waitForElement('cky-consent', false, handleConsentBannerShown);
   };
