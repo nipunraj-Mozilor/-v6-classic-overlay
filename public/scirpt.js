@@ -6,13 +6,12 @@ window.addEventListener('load', function () {
 });
 function waitForElement(selector, isShowup, callback) {
   if (isShowup && breakShowupWait) {
-    console.log('inside if', isShowup);
     breakShowupWait = false;
     return callback();
   }
   const element = document.querySelector(`.${selector}`);
-  console.log('element here', element);
-  if (element && element.style.display !== 'none') {
+  if (element && element.style.display !== 'block') {
+    console.log('is block');
     return callback(element);
   }
   setTimeout(() => {
