@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
   setTimeout(function () {
     if (
-      document.querySelector(
+      !document.querySelector(
         '.cky-consent-container .cky-classic-bottom .cky-hide'
       )
     ) {
@@ -12,7 +12,7 @@ window.addEventListener('load', function () {
 
 document.addEventListener('DOMContentLoaded', () => {
   const element = document.querySelector(
-    '.cky-btn-reject,.cky-btn-preferences,.cky-btn-accept'
+    '.cky-btn-reject, .cky-btn-preferences, .cky-btn-accept'
   );
   element.addEventListener('click', () => {
     document.body.classList.remove('cky-overlay');
