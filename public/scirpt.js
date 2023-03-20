@@ -11,7 +11,7 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.querySelector(`.${selector}`);
-  // console.log('element here', element);
+  console.log('element here', element);
   if (element && element.style.display !== 'none') {
     return callback(element);
   }
