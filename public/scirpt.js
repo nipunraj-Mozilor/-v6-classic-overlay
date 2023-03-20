@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
         '.cky-consent-container .cky-classic-bottom .cky-hide'
       )
     ) {
-      document.body.classList.add('cky-overlay');
+      document.body.classList.remove('cky-overlay');
     }
   }, 2000);
 });
