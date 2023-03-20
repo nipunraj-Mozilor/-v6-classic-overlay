@@ -10,15 +10,12 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.querySelector(`.${selector}`);
-  // console.log('element2', element2);
-  if (
-    element &&
-    element.style.display !== 'none' &&
-    element.style.display !== ''
-  ) {
+  const display = getStyle('.cky-consent-container', 'display');
+  if (element && display !== 'none' && display !== '') {
     console.log('is none');
     return callback(element);
   }
+
   // if (element && element.classList.contains('cky-hide')) {
   //   const computedStyle = window.getComputedStyle(element);
   //   if (computedStyle.display === 'block') {
@@ -56,4 +53,13 @@ function removeOverlay(element) {
     breakPopupWait = true;
     waitForElement('cky-consent', false, handleConsentBannerShown);
   };
+}
+
+function getStyle(id, name) {
+  const element = document.querySelector(id);
+  return element.currentStyle
+    ? element.currentStyle[name]
+    : window.getComputedStyle
+    ? window.getComputedStyle(element, null).getPropertyValue(name)
+    : null;
 }
