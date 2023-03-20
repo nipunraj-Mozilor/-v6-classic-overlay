@@ -11,16 +11,16 @@ function waitForElement(selector, isShowup, callback) {
   }
   const element = document.querySelector(`.${selector}`);
   console.log('element2', element2);
-  // if (element && element2.style.display !== 'none') {
-  //   console.log('is none');
-  //   return callback(element);
-  // }
-  if (element && element.classList.contains('cky-hide')) {
-    const computedStyle = window.getComputedStyle(element);
-    if (computedStyle.display === 'block') {
-      document.body.classList.add('cky-overlay');
-    }
+  if (element && element2.style.display !== 'none') {
+    console.log('is none');
+    return callback(element);
   }
+  // if (element && element.classList.contains('cky-hide')) {
+  //   const computedStyle = window.getComputedStyle(element);
+  //   if (computedStyle.display === 'block') {
+  //     document.body.classList.add('cky-overlay');
+  //   }
+  // }
   setTimeout(() => {
     waitForElement(selector, isShowup, callback);
   }, 200);
