@@ -10,11 +10,16 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.querySelector(`.${selector}`);
-  const element2 = document.querySelector('.cky-hide');
   console.log('element2', element2);
-  if (element && element2.style.display !== 'none') {
-    console.log('is none');
-    return callback(element);
+  // if (element && element2.style.display !== 'none') {
+  //   console.log('is none');
+  //   return callback(element);
+  // }
+  if (element && element.classList.contains('cky-hide')) {
+    const computedStyle = window.getComputedStyle(element);
+    if (computedStyle.display === 'block') {
+      document.body.classList.add('cky-overlay');
+    }
   }
   setTimeout(() => {
     waitForElement(selector, isShowup, callback);
