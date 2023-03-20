@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   document.body.classList.remove('cky-overlay');
   // });
   const elements = document.querySelectorAll(
-    '.cky-btn-reject, .cky-btn-preferences, .cky-btn-accept'
+    '#cky-btn-reject, #cky-btn-preferences, #cky-btn-accept'
   );
   elements.forEach((element) => {
     element.addEventListener('click', () => {
