@@ -11,11 +11,19 @@ window.addEventListener('load', function () {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const element = document.querySelector(
-    '.cky-btn-reject,.cky-btn-preferences,.cky-btn-accept'
+  // const element = document.querySelector(
+  //   '.cky-btn-reject,.cky-btn-preferences,.cky-btn-accept'
+  // );
+  // element.addEventListener('click', () => {
+  //   document.body.classList.remove('cky-overlay');
+  // });
+  const elements = document.querySelectorAll(
+    '.cky-btn-reject, .cky-btn-preferences, .cky-btn-accept'
   );
-  element.addEventListener('click', () => {
-    document.body.classList.remove('cky-overlay');
+  elements.forEach((element) => {
+    element.addEventListener('click', () => {
+      document.body.classList.remove('cky-overlay');
+    });
   });
 });
 
