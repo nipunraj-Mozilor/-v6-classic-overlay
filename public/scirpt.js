@@ -10,10 +10,12 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.querySelector(`.${selector}`);
-  const display = getStyle('.cky-consent-container', 'display');
-  if (element && display !== 'none' && display !== '') {
-    console.log('is none');
-    return callback(element);
+  if (element) {
+    const display = getStyle('.cky-consent-container', 'display');
+    if (element && display !== 'none' && display !== '') {
+      console.log('is none');
+      return callback(element);
+    }
   }
 
   // if (element && element.classList.contains('cky-hide')) {
@@ -57,7 +59,7 @@ function removeOverlay(element) {
 
 function getStyle(id, name) {
   const element = document.querySelector(id);
-  return element.currentStyle
+  return element && element.currentStyle
     ? element.currentStyle[name]
     : window.getComputedStyle
     ? window.getComputedStyle(element, null).getPropertyValue(name)
