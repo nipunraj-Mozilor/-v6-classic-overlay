@@ -10,12 +10,21 @@ window.addEventListener('load', function () {
   }, 2000);
 });
 
-const element = document.querySelector(
-  '.cky-btn-reject,.cky-btn-preferences,.cky-btn-accept'
-);
-element.addEventListener('click', () => {
-  document.body.classList.remove('cky-overlay');
+document.addEventListener('DOMContentLoaded', () => {
+  const element = document.querySelector(
+    '.cky-btn-reject,.cky-btn-preferences,.cky-btn-accept'
+  );
+  element.addEventListener('click', () => {
+    document.body.classList.remove('cky-overlay');
+  });
 });
+
+// const element = document.querySelector(
+//   '.cky-btn-reject,.cky-btn-preferences,.cky-btn-accept'
+// );
+// element.addEventListener('click', () => {
+//   document.body.classList.remove('cky-overlay');
+// });
 
 // jQuery(document).on(
 //   'click',
