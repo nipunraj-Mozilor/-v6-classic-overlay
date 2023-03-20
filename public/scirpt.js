@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
   setTimeout(function () {
     if (
       !document.querySelector(
-        '.cky-consent-container.cky-classic-bottom.cky-hide'
+        '.cky-consent-container .cky-classic-bottom .cky-hide'
       )
     ) {
       document.body.classList.add('cky-overlay');
