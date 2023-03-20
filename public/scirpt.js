@@ -45,8 +45,8 @@ function removeOverlay(element) {
   };
 }
 
-function getStyle(id, name) {
-  const element = document.querySelector(id);
+function getStyle(element, name) {
+  // const element = document.querySelector(id);
   return element && element.currentStyle
     ? element.currentStyle[name]
     : window.getComputedStyle
