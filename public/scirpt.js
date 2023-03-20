@@ -33,9 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
 //     document.body.classList.remove('cky-overlay');
 //   }
 // );
-const element2 = document.querySelector('.cky-btn-revisit');
-element2.addEventListener('click', () => {
-  document.body.classList.add('cky-overlay');
+// const element2 = document.querySelector('.cky-btn-revisit');
+// element2.addEventListener('click', () => {
+//   document.body.classList.add('cky-overlay');
+// });
+document.addEventListener('DOMContentLoaded', () => {
+  const element2 = document.querySelector('.cky-btn-revisit');
+  element2.addEventListener('click', () => {
+    document.body.classList.add('cky-overlay');
+  });
 });
 
 // jQuery(document).on('click', '.cky-btn-revisit', function () {
