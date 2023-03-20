@@ -4,10 +4,10 @@ window.addEventListener('load', function () {
   waitForElement('cky-consent-container', false, handleConsentBannerShown);
 });
 function waitForElement(selector, isShowup, callback) {
-  const element = document.querySelector(`.${selector}`);
+  const element = document.querySelector(`.${selector} .cky-consent-container`);
   if (element) {
-    const display = getStyle('.cky-consent-container', 'display');
-    if (element && display !== 'none' && display !== '') {
+    const display = getStyle(element, 'display');
+    if (display !== 'none' && display !== '') {
       return callback(element);
     }
   }
