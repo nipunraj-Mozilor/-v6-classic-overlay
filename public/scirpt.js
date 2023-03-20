@@ -1,7 +1,7 @@
 window.addEventListener('load', function () {
   setTimeout(function () {
     if (
-      !document.querySelector(
+      document.querySelector(
         '.cky-consent-container .cky-classic-bottom .cky-hide'
       )
     ) {
