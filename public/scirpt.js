@@ -35,6 +35,7 @@ function handleConsentBannerShown(element) {
 
 function removeOverlay(element) {
   return function () {
+    if (!element || !element.parentNode) return;
     element.parentNode.removeChild(element);
     waitForElement('.cky-consent-container', handleConsentBannerShown);
   };
