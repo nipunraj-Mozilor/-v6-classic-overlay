@@ -1,27 +1,49 @@
+const buttons = ['cky-btn-accept', 'cky-btn-reject'];
+
+let breakShowupWait = false;
 window.addEventListener('load', function () {
-  setTimeout(function () {
-    if (
-      !document.querySelector(
-        '.cky-consent-container.cky-classic-bottom.cky-hide'
-      )
-    ) {
-      document.body.classList.add('cky-overlay');
-    }
-  }, 2000);
+  waitForElement('cky-consent-container', false, handleConsentBannerShown);
 });
+function waitForElement(selector, isShowup, callback) {
+  if (isShowup && breakShowupWait) {
+    breakShowupWait = false;
+    return callback();
+  }
+  const element = document.querySelector(`.${selector}`);
+  // console.log('element2', element2);
+  if (element && element.style.display !== 'none') {
+    console.log('is none');
+    return callback(element);
+  }
+  // if (element && element.classList.contains('cky-hide')) {
+  //   const computedStyle = window.getComputedStyle(element);
+  //   if (computedStyle.display === 'block') {
+  //     document.body.classList.add('cky-overlay');
+  //   }
+  // }
+  setTimeout(() => {
+    waitForElement(selector, isShowup, callback);
+  }, 200);
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-  const element = document.querySelector(
-    '.cky-btn-reject, .cky-btn-preferences, .cky-btn-accept'
-  );
-  element.addEventListener('click', () => {
-    document.body.classList.remove('cky-overlay');
-  });
-});
+function handleConsentBannerShown(element) {
+  console.log('inside callback element', element);
+  const overlayElement = document.createElement('div');
+  overlayElement.setAttribute('class', 'cky-overlay');
+  element.parentNode.insertBefore(overlayElement, element.nextSibling);
+  for (let i = 0; i < buttons.length; i++) {
+    // console.log('buttons in loop', buttons[i]);
+    const buttonElement = document.querySelector(`.${buttons[i]}`);
+    // console.log('cliked button', buttonElement);
+    buttonElement &&
+      buttonElement.addEventListener('click', removeOverlay(overlayElement));
+  }
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-  const element2 = document.querySelector('.cky-btn-revisit');
-  element2.addEventListener('click', () => {
-    document.body.classList.add('cky-overlay');
-  });
-});
+function removeOverlay(element) {
+  return () => {
+    element.parentNode.removeChild(element);
+    breakPopupWait = true;
+    waitForElement('cky-consent', false, handleConsentBannerShown);
+  };
+}
