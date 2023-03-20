@@ -10,8 +10,8 @@ function waitForElement(selector, isShowup, callback) {
     return callback();
   }
   const element = document.querySelector(`.${selector}`);
-  if (element && element.style.display !== 'block') {
-    console.log('is block');
+  if (element && element.style.display !== 'none') {
+    console.log('is none');
     return callback(element);
   }
   setTimeout(() => {
