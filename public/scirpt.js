@@ -27,7 +27,7 @@ function waitForElement(selector, isShowup, callback) {
 }
 
 function handleConsentBannerShown(element) {
-  console.log('inside callback element', element);
+  console.log('inside callback element', element.style.display);
   const overlayElement = document.createElement('div');
   overlayElement.setAttribute('style', 'cky-overlay');
   overlayElement.setAttribute(
